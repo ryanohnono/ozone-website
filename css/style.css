@@ -356,11 +356,11 @@ button { font: inherit; }
 .tile-link::after { content: "›"; margin-left: 4px; transition: transform .2s var(--ease); }
 .tile:hover .tile-link::after { transform: translateX(3px); }
 .tile-img {
-  margin-top: auto;
-  width: 100%;
+  margin: auto -44px 0;                 /* extend past tile's horizontal padding */
+  width: calc(100% + 88px);              /* fill tile width edge-to-edge */
   aspect-ratio: 4 / 3;
-  background-size: contain;
-  background-position: center bottom;
+  background-size: cover;                /* fill the rounded area, no visible square */
+  background-position: center;
   background-repeat: no-repeat;
 }
 
