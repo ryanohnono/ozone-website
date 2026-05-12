@@ -1,0 +1,13 @@
+# macOS system files
+.DS_Store
+
+# Claude Code local settings (per-user, not for sharing)
+.claude/
+
+# Editor folders
+.vscode/
+.idea/
+
+# Temporary / log files
+*.log
+*.tmp
