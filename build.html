@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Build your O.ZONE — Configurator</title>
+  <meta name="description" content="Configure your O.ZONE camera system. Pick a body, lens cone, lens, back, and accessories — and we'll show you what works together." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Nav -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">O.ZONE</a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
+      <ul class="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="bodies.html">Bodies</a></li>
+        <li><a href="lenses.html">Lenses</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+        <li><a href="build.html" class="active">Build</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Page head -->
+  <section class="page-head">
+    <h1>Build your O.ZONE.</h1>
+    <p>Pick a body, a lens cone, a lens. Add a primary back and a secondary back. We'll filter every step to what actually works together.</p>
+    <p style="margin-top:14px;font-size:14.5px;color:var(--ink-mute);">O.ZONE produces the body, cone, helicoid and viewfinder masks. The lens, finder body, light meter and other accessories are sourced separately.</p>
+  </section>
+
+  <!-- Configurator -->
+  <div class="config-layout">
+    <main class="config-main">
+
+      <!-- Step 1: Body -->
+      <section class="config-step" id="step-body" data-step="body">
+        <header class="config-step-head">
+          <span class="config-step-num">01</span>
+          <h2>Choose a body</h2>
+          <span class="config-step-sub">Three chassis · Pick one</span>
+        </header>
+        <p class="config-step-msg">Start here.</p>
+        <div class="config-options" data-options="body"></div>
+      </section>
+
+      <!-- Step 2: Cone (SL45 only) -->
+      <section class="config-step locked" id="step-cone" data-step="cone">
+        <header class="config-step-head">
+          <span class="config-step-num">02</span>
+          <h2>Choose a lens cone</h2>
+          <span class="config-step-sub">SL45 ships with one — choose your second</span>
+        </header>
+        <p class="config-step-msg">Choose a body first.</p>
+        <div class="config-options" data-options="cone"></div>
+      </section>
+
+      <!-- Step 3: Lens -->
+      <section class="config-step locked" id="step-lens" data-step="lens">
+        <header class="config-step-head">
+          <span class="config-step-num">03</span>
+          <h2>Choose a primary lens</h2>
+          <span class="config-step-sub">Filtered to what your body + cone supports</span>
+        </header>
+        <p class="config-step-msg">Make a body / cone selection first.</p>
+        <div class="config-options" data-options="lens"></div>
+      </section>
+
+      <!-- Step 4: Primary back -->
+      <section class="config-step locked" id="step-back" data-step="back">
+        <header class="config-step-head">
+          <span class="config-step-num">04</span>
+          <h2>Primary back</h2>
+          <span class="config-step-sub">Backs that don't cover your lens are greyed out</span>
+        </header>
+        <p class="config-step-msg">Pick a lens first — back compatibility depends on lens coverage.</p>
+        <div class="config-options" data-options="back"></div>
+      </section>
+
+      <!-- Step 5: Secondary back -->
+      <section class="config-step locked" id="step-secondaryBack" data-step="secondaryBack">
+        <header class="config-step-head">
+          <span class="config-step-num">05</span>
+          <h2>Secondary back <span style="color:var(--ink-faint);font-weight:400;font-size:0.7em;margin-left:8px;">(optional)</span></h2>
+          <span class="config-step-sub">Many shooters carry one film back and one Instax back</span>
+        </header>
+        <p class="config-step-msg">Choose your primary back first.</p>
+        <div class="config-options" data-options="secondaryBack"></div>
+      </section>
+
+      <!-- Step 6: Viewfinder -->
+      <section class="config-step locked" id="step-viewfinder" data-step="viewfinder">
+        <header class="config-step-head">
+          <span class="config-step-num">06</span>
+          <h2>Choose a viewfinder</h2>
+          <span class="config-step-sub">Filtered to your lens focal length</span>
+        </header>
+        <p class="config-step-msg">Choose a primary back first.</p>
+        <p style="font-size:13.5px;color:var(--ink-mute);margin:-8px 0 18px;">Finder bodies are sourced separately. We make 3D-printed masks for them — pick masks in the next step.</p>
+        <div class="config-options" data-options="viewfinder"></div>
+      </section>
+
+      <!-- Step 7: Viewfinder masks -->
+      <section class="config-step locked" id="step-masks" data-step="masks">
+        <header class="config-step-head">
+          <span class="config-step-num">07</span>
+          <h2>Viewfinder masks <span style="color:var(--ink-faint);font-weight:400;font-size:0.7em;margin-left:8px;">(multi-select · optional)</span></h2>
+          <span class="config-step-sub">3D-printed masks for your finder, focal length and back format</span>
+        </header>
+        <p class="config-step-msg">Choose a viewfinder first. Skipped automatically for finders without a mask system.</p>
+        <div class="config-options" data-options="masks"></div>
+      </section>
+
+      <!-- Build / kit divider -->
+      <div class="build-divider">
+        <span class="eyebrow">Your build ends here</span>
+        <h3>The rest is your kit.</h3>
+        <p>O.ZONE produces the body, cone, helicoid and viewfinder masks. Everything below — light meter, flash, ND filters, sync adapter, focus aids — is third-party gear we don't sell. Pick what you'd plan to use; we'll include it as context in your inquiry, not as part of the build.</p>
+      </div>
+
+      <!-- Optional kit · Light meter -->
+      <section class="config-step locked optional" id="step-meter" data-step="meter">
+        <header class="config-step-head">
+          <span class="config-step-num">A</span>
+          <h2>Light meter <span style="color:var(--ink-faint);font-weight:400;font-size:0.7em;margin-left:8px;">(optional · third-party)</span></h2>
+          <span class="config-step-sub">Recommendations only — sourced separately</span>
+        </header>
+        <p class="config-step-msg">Available once your build is complete.</p>
+        <div class="config-options" data-options="meter"></div>
+      </section>
+
+      <!-- Optional kit · Flash -->
+      <section class="config-step locked optional" id="step-flash" data-step="flash">
+        <header class="config-step-head">
+          <span class="config-step-num">B</span>
+          <h2>Flash <span style="color:var(--ink-faint);font-weight:400;font-size:0.7em;margin-left:8px;">(optional · third-party)</span></h2>
+          <span class="config-step-sub">Auto-thyristor flashes only — Copal shutters are TTL-blind</span>
+        </header>
+        <p class="config-step-msg">Available once your build is complete.</p>
+        <div class="config-options" data-options="flash"></div>
+      </section>
+
+      <!-- Optional kit · Extras -->
+      <section class="config-step locked optional" id="step-extras" data-step="extras">
+        <header class="config-step-head">
+          <span class="config-step-num">C</span>
+          <h2>Other accessories <span style="color:var(--ink-faint);font-weight:400;font-size:0.7em;margin-left:8px;">(optional · third-party · multi-select)</span></h2>
+          <span class="config-step-sub">Filters, hoods, sync adapters and focus aids</span>
+        </header>
+        <p class="config-step-msg">Available once your build is complete.</p>
+        <div class="config-options compact" data-options="extras"></div>
+      </section>
+
+      <!-- Final review -->
+      <section class="config-review" id="review">
+        <p class="review-eyebrow">Your build</p>
+        <h2 id="review-title">Configuration summary</h2>
+        <p id="review-sub" style="margin-top:12px;color:var(--ink-soft);font-size:17px;line-height:1.5;"></p>
+        <div class="review-list" id="review-list"></div>
+        <div class="config-review-cta">
+          <button class="btn btn-primary" id="btn-print">Print this build</button>
+          <button class="btn btn-link" id="btn-copy">Copy as text</button>
+          <a class="btn btn-link" id="btn-inquire" href="#">Inquire about this build</a>
+        </div>
+      </section>
+
+    </main>
+
+    <aside class="config-summary" aria-label="Your build summary">
+      <h3>Your build</h3>
+      <div class="config-summary-list">
+        <div class="config-summary-item" data-summary="body">
+          <span class="label">Body</span>
+          <span class="value empty">—</span>
+        </div>
+        <div class="config-summary-item hidden" data-summary="cone">
+          <span class="label">Cone</span>
+          <span class="value empty">—</span>
+        </div>
+        <div class="config-summary-item" data-summary="lens">
+          <span class="label">Lens</span>
+          <span class="value empty">—</span>
+        </div>
+        <div class="config-summary-item" data-summary="back">
+          <span class="label">Back · 1</span>
+          <span class="value empty">—</span>
+        </div>
+        <div class="config-summary-item" data-summary="secondaryBack">
+          <span class="label">Back · 2</span>
+          <span class="value empty">—</span>
+        </div>
+        <div class="config-summary-item" data-summary="viewfinder">
+          <span class="label">Finder</span>
+          <span class="value empty">—</span>
+        </div>
+        <div class="config-summary-item" data-summary="masks">
+          <span class="label">Masks</span>
+          <span class="value empty">—</span>
+        </div>
+        <div class="summary-group-head">Optional kit · third-party</div>
+        <div class="config-summary-item" data-summary="meter">
+          <span class="label">Meter</span>
+          <span class="value empty">—</span>
+        </div>
+        <div class="config-summary-item" data-summary="flash">
+          <span class="label">Flash</span>
+          <span class="value empty">—</span>
+        </div>
+        <div class="config-summary-item" data-summary="extras">
+          <span class="label">Extras</span>
+          <span class="value empty">—</span>
+        </div>
+      </div>
+      <div class="total-action">
+        <button class="btn btn-primary" id="btn-finish" disabled>Review build</button>
+        <button class="btn btn-link" id="btn-reset" style="font-size:13px;color:var(--ink-mute);">Start over</button>
+      </div>
+      <p class="summary-progress" id="progress">0 / 7 selected</p>
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <footer class="foot">
+    <div class="foot-inner">
+      <span>© 2026 O.ZONE. A modular camera system.</span>
+      <span><a href="about.html">About</a> · <a href="bodies.html">Bodies</a> · <a href="lenses.html">Lenses</a> · <a href="accessories.html">Accessories</a> · <a href="build.html">Build</a></span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/build.js"></script>
+</body>
+</html>
