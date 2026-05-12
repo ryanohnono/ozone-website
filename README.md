@@ -1,5 +1,7 @@
 # O.ZONE — Website
 
+![O.ZONE — One chassis. Every format.](assets/hero/og.png)
+
 Marketing site for the **O.ZONE** modular medium & large format camera system —
 a 3D-printed chassis that adapts the world's finest large-format glass to
 swappable film backs (6×12, 6×9, 6×7, 4×5 sheet, Instax Wide).
