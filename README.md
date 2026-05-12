@@ -53,7 +53,6 @@ run `python3 -m http.server` from the repo root and visit `http://localhost:8000
 The everyday workflow, one command:
 
 ```bash
-cd "/Users/yongjun/O-zone website"
 git pull                                                # before editing
 # … make changes …
 git add -A && git commit -m "what changed" && git push  # deploys ~1–3 min later
