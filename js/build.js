@@ -848,8 +848,8 @@
     }
     list.innerHTML = html;
 
-    const inquire = document.getElementById('btn-inquire');
-    inquire.href = `mailto:?subject=${encodeURIComponent('O.ZONE build inquiry')}&body=${encodeURIComponent(buildReviewText())}`;
+    // Inquiry button is a static Instagram DM link — no dynamic href needed.
+    // Users copy the build summary (btn-copy) then paste in the DM.
 
     review.classList.add('visible-review');
     setTimeout(() => review.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
