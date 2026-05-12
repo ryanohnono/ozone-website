@@ -313,7 +313,7 @@ button { font: inherit; }
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--bg-elev);
-  min-height: 480px;
+  min-height: 560px;
   padding: 56px 44px 0;
   text-align: center;
   display: flex;
@@ -322,6 +322,7 @@ button { font: inherit; }
   box-shadow: var(--shadow-sm);
   transition: transform .35s var(--ease), box-shadow .35s var(--ease);
 }
+@media (max-width: 760px) { .tile { min-height: 600px; } }
 .tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 .tile.dark { background: #0a0a0a; color: #fff; }
 .tile.dark .tile-sub { color: #a1a1a6; }
@@ -348,6 +349,7 @@ button { font: inherit; }
 }
 .tile-link {
   margin-top: 18px;
+  margin-bottom: 36px;          /* breathing room above the image below */
   font-size: 14.5px;
   color: var(--accent-ink);
   font-weight: 500;
@@ -356,12 +358,13 @@ button { font: inherit; }
 .tile-link::after { content: "›"; margin-left: 4px; transition: transform .2s var(--ease); }
 .tile:hover .tile-link::after { transform: translateX(3px); }
 .tile-img {
-  margin: auto -44px 0;                 /* extend past tile's horizontal padding */
-  width: calc(100% + 88px);              /* fill tile width edge-to-edge */
+  margin: auto -44px 0;                       /* extend past tile's horizontal padding */
+  width: calc(100% + 88px);                    /* fill tile width edge-to-edge */
   aspect-ratio: 4 / 3;
-  background-size: cover;                /* fill the rounded area, no visible square */
+  background-size: cover;                      /* fill the rounded area, no visible square */
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;  /* round top corners to mirror tile's curve */
 }
 
 /* ---------- Feature stripe (icons + copy) ---------- */
@@ -1266,6 +1269,20 @@ button { font: inherit; }
   text-align: center;
   line-height: 1.5;
   max-width: 36ch;
+}
+.ig-more {
+  margin-top: 48px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+.ig-more code {
+  font-style: normal;
+  font-size: 12px;
+  background: var(--line-soft);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 @media (max-width: 960px) {
   .ig-grid {
