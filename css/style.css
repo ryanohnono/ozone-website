@@ -1238,6 +1238,43 @@ button { font: inherit; }
   font-variant-numeric: tabular-nums;
 }
 
+/* Instagram embed grid (Featured posts on gallery) */
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.ig-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ig-grid .instagram-media {
+  /* Override Instagram's default inline min/max widths so embeds fit our grid columns */
+  margin: 0 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 540px !important;
+}
+.ig-note {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--ink-mute);
+  text-align: center;
+  line-height: 1.5;
+  max-width: 36ch;
+}
+@media (max-width: 960px) {
+  .ig-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    max-width: 540px;
+  }
+}
+
 /* Featured photographer */
 .featured-photographer {
   display: grid;
