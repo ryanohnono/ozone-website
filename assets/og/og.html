@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>O.ZONE — Open Graph image source</title>
+<style>
+  /*
+   * Renders at exactly 1200 × 630 (the Open Graph / iMessage / Discord
+   * preview standard, 1.91:1). Used only as a source for assets/hero/og.png —
+   * re-render with:
+   *
+   *   /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
+   *     --headless --disable-gpu --hide-scrollbars \
+   *     --window-size=1200,630 \
+   *     --screenshot="$(pwd)/../hero/og.png" \
+   *     "file://$(pwd)/og.html"
+   */
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #fbfbfd;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #1d1d1f;
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    align-items: center;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .text {
+    padding: 0 56px 0 72px;
+  }
+  .brand {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+  }
+  h1 {
+    font-size: 60px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.04;
+    margin: 0 0 24px;
+  }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(180deg, #1d1d1f 0%, #4a4a4f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .lede {
+    font-size: 19px;
+    color: #6e6e73;
+    line-height: 1.55;
+    margin: 0;
+    max-width: 38ch;
+  }
+  .photo {
+    height: 100%;
+    background-image: url("../../SL45 image/O-Zone SL456.jpeg");
+    background-size: 88%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #fbfbfd;
+  }
+</style>
+</head>
+<body>
+  <div class="text">
+    <div class="brand">O.ZONE</div>
+    <h1>One chassis.<br /><em>Every format.</em></h1>
+    <p class="lede">A modular, 3D-printed medium &amp; large format camera system. Built around the world's finest panoramic glass.</p>
+  </div>
+  <div class="photo" role="img" aria-label="O.ZONE SL45 chassis with Mamiya Press 50mm lens"></div>
+</body>
+</html>
