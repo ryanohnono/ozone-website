@@ -1114,14 +1114,6 @@ button { font: inherit; }
   max-width: 56ch;
 }
 
-.config-step.optional .config-step-head h2::after {
-  content: " · third-party";
-  color: var(--ink-faint);
-  font-weight: 400;
-  font-size: 0.7em;
-  letter-spacing: 0;
-}
-
 /* ----- Image placeholders (until real photos land) ----- */
 .img-placeholder {
   background: #fff;
