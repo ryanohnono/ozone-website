@@ -1,6 +1,10 @@
 # macOS system files
 .DS_Store
 
+# Photographer-submission staging area (raw originals, ~200 MB).
+# Not for git — optimized versions go in assets/gallery/ when integrated.
+Example image/
+
 # Claude Code local settings (per-user, not for sharing)
 .claude/
 

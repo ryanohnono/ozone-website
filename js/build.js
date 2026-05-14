@@ -92,7 +92,7 @@
         covers: { '6x12': true, '6x9': true, '6x7': true, '4x5': true, 'instax': true,  '2x3': true } },
       { id: 'sa90xl',   name: 'Schneider Super-Angulon 90 mm f/5.6 XL', mm: 90, tag: 'XL · Lens-locked · check fit',
         bodies: ['sl45','fw69'], cone: 'mp',
-        warn: 'XL designs are typically non-exchangeable — likely requires a dedicated cone (similar to the older 47 mm XL). Must be discussed with O.ZONE before ordering. Rodenstock Grandagon 90 f/6.8 is the safer default.',
+        warn: 'XL designs are typically non-exchangeable — likely requires a dedicated cone. Must be discussed with O.ZONE before ordering. Rodenstock Grandagon 90 f/6.8 is the safer default.',
         covers: { '6x12': true, '6x9': true, '6x7': true, '4x5': true, 'instax': true,  '2x3': true } },
       { id: 'sa90f8',   name: 'Schneider Super-Angulon 90 mm f/8',  mm: 90, tag: 'Compact · check fit',
         bodies: ['sl45','fw69'], cone: 'mp',
