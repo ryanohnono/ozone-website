@@ -353,7 +353,7 @@
         ? state.extras.has(it.id)
         : state[stateKey] === it.id;
       const disabled = it._disabled;
-      const img = it.img ? `<div class="opt-img" style="background-image:url('${it.img}')"></div>` : '';
+      const img = it.img ? `<div class="opt-img" role="img" aria-label="O.ZONE ${it.name} camera body" style="background-image:url('${it.img}')"></div>` : '';
       const tag = it.tag ? `<span class="opt-tag">${it.tag}</span>` : '';
       const warn = it.warn ? `<p class="opt-warn">${it.warn}</p>` : '';
       const desc = it.desc ? `<p class="opt-desc">${it.desc}</p>` : '';
