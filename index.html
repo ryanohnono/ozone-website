@@ -213,24 +213,52 @@
         <h2 class="section-title">What 6×12 on O.ZONE glass<br/>actually looks like.</h2>
       </div>
 
-      <div class="sample-grid teaser">
-        <figure class="reveal">
-          <div class="img-placeholder pano">Featured sample<br/>Grandagon-N 75 mm<br/>on 6×12</div>
-          <figcaption><strong>Rodenstock Grandagon-N 75 mm</strong></figcaption>
-        </figure>
-        <figure class="reveal">
-          <div class="img-placeholder pano">Featured sample<br/>Nikkor SW 65 mm<br/>on 6×12</div>
-          <figcaption><strong>Nikkor SW 65 mm f/4</strong></figcaption>
-        </figure>
-        <figure class="reveal">
-          <div class="img-placeholder pano">Featured sample<br/>Grandagon 90 mm<br/>on 6×12</div>
-          <figcaption><strong>Rodenstock Grandagon 90 mm</strong></figcaption>
-        </figure>
+      <div class="sample-grid teaser" id="index-sample-grid">
+        <figure class="reveal"><a class="gallery-img-link" data-lightbox><img class="gallery-img" alt="" loading="lazy"></a><figcaption></figcaption></figure>
+        <figure class="reveal"><a class="gallery-img-link" data-lightbox><img class="gallery-img" alt="" loading="lazy"></a><figcaption></figcaption></figure>
+        <figure class="reveal"><a class="gallery-img-link" data-lightbox><img class="gallery-img" alt="" loading="lazy"></a><figcaption></figcaption></figure>
       </div>
 
       <p class="center mt-l">
         <a href="gallery.html" class="btn btn-link">See the gallery →</a>
       </p>
+      <script>
+        // Pick 3 distinct random 6×12 shots on large-format glass for the teaser.
+        // Pool is built from compressed photos in assets/gallery/{photog}/{lg,md}/.
+        (function () {
+          var pool = [
+            { dir: 'a__sajinga', slug: 'fw45-nikkor-65-provia-100f',         lens: 'Nikkor SW 65 mm', handle: 'a__sajinga' },
+            { dir: 'a__sajinga', slug: 'fw45-nikkor65-lucky200',              lens: 'Nikkor SW 65 mm', handle: 'a__sajinga' },
+            { dir: 'a__sajinga', slug: '260227-sl45-rodenstock-75mm-e1000',   lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
+            { dir: 'a__sajinga', slug: '260307-sl45-rodenstock-75mm-gold200', lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
+            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-1',             lens: 'Nikkor SW 65 mm', handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-2',             lens: 'Nikkor SW 65 mm', handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-3',             lens: 'Nikkor SW 65 mm', handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-4',             lens: 'Nikkor SW 65 mm', handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-5',             lens: 'Nikkor SW 65 mm', handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-6',             lens: 'Nikkor SW 65 mm', handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'sl45-rodenstock-90mm-6x12-1',         lens: 'Grandagon 90 mm', handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'sl45-rodenstock-90mm-6x12-2',         lens: 'Grandagon 90 mm', handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'sl45-rodenstock-90mm-6x12-3',         lens: 'Grandagon 90 mm', handle: 'anjichrome' },
+          ];
+          for (var i = pool.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+          }
+          var picks = pool.slice(0, 3);
+          var figs = document.querySelectorAll('#index-sample-grid figure');
+          picks.forEach(function (p, i) {
+            var f = figs[i];
+            var a = f.querySelector('a');
+            var img = f.querySelector('img');
+            var cap = f.querySelector('figcaption');
+            a.href = 'assets/gallery/' + p.dir + '/lg/' + p.slug + '.jpg';
+            img.src = 'assets/gallery/' + p.dir + '/md/' + p.slug + '.jpg';
+            img.alt = p.lens + ' — 6×12 on O.ZONE';
+            cap.innerHTML = '<strong>' + p.lens + '</strong> · <a href="https://www.instagram.com/' + p.handle + '/" target="_blank" rel="noopener">@' + p.handle + '</a>';
+          });
+        })();
+      </script>
     </div>
   </section>
 
