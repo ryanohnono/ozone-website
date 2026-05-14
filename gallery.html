@@ -48,13 +48,35 @@
     <p>Work from the O.ZONE community. Every photograph on this page was made on an O.ZONE chassis — on every body, lens and back the system supports.</p>
   </section>
 
-  <!-- Hero panorama -->
+  <!-- Hero panorama (50/50 randomized client-side between two marquee shots) -->
   <section class="section compact">
     <figure class="gallery-hero">
-      <div class="img-placeholder pano">Gallery hero — full-width 6×12 panorama<br/>Best community shot · large-format glass<br/>Body / lens / film / photographer TBD</div>
-      <figcaption><strong>Gallery hero shot</strong> · 6×12 panorama · [lens / body / film / photographer / location TBD]</figcaption>
+      <a class="gallery-img-link" id="gallery-hero-link"
+         href="assets/gallery/a__sajinga/lg/fw45-nikkor-65-provia-100f.jpg"
+         data-lightbox>
+        <img class="gallery-img" id="gallery-hero-img"
+             src="assets/gallery/a__sajinga/md/fw45-nikkor-65-provia-100f.jpg"
+             alt="Shanghai skyline at golden hour — FW45, Nikkor SW 65 mm, 6×12 on Provia 100F"
+             loading="eager">
+      </a>
+      <figcaption id="gallery-hero-caption"><strong>Gallery hero</strong> · FW45 · Nikkor SW 65 mm · 6×12 · Provia 100F · <a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></figcaption>
     </figure>
   </section>
+  <script>
+    // 50/50: keep the default hero, or swap to the alternate marquee photo.
+    // Runs immediately after the figure so the swap lands before paint.
+    (function () {
+      if (Math.random() < 0.5) return;
+      var img = document.getElementById('gallery-hero-img');
+      var link = document.getElementById('gallery-hero-link');
+      var cap = document.getElementById('gallery-hero-caption');
+      if (!img || !link || !cap) return;
+      img.src = 'assets/gallery/anjichrome/md/fw45-nikkor-65mm-6x12-1.jpg';
+      img.alt = 'Summer playground scene — FW45, Nikkor SW 65 mm, 6×12';
+      link.href = 'assets/gallery/anjichrome/lg/fw45-nikkor-65mm-6x12-1.jpg';
+      cap.innerHTML = '<strong>Gallery hero</strong> · FW45 · Nikkor SW 65 mm · 6×12 · <a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener">@anjichrome</a>';
+    })();
+  </script>
 
   <!-- Featured posts from Instagram -->
   <section class="section">
@@ -92,99 +114,123 @@
 
       <div class="gallery-grid">
 
-        <figure class="gallery-item" data-lens="rgn75" data-back="6x12">
-          <div class="img-placeholder pano">Curated 01<br/>6×12 · Grandagon-N 75 mm<br/>Photographer name</div>
-          <figcaption>
-            <span class="gallery-photographer"><a href="#">Photographer Name</a></span>
-            <span class="gallery-meta">SL45 Slim · Grandagon-N 75 mm · 6×12 · [film stock] · [location / year]</span>
-          </figcaption>
-        </figure>
-
         <figure class="gallery-item" data-lens="nik65" data-back="6x12">
-          <div class="img-placeholder pano">Curated 02<br/>6×12 · Nikkor SW 65 mm<br/>Photographer name</div>
+          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/fw45-nikkor65-lucky200.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/a__sajinga/md/fw45-nikkor65-lucky200.jpg" alt="Shanghai Bund at night — neon city reflected on the river" loading="lazy">
+          </a>
           <figcaption>
-            <span class="gallery-photographer"><a href="#">Photographer Name</a></span>
-            <span class="gallery-meta">SL45 MP · Nikkor SW 65 mm f/4 · 6×12 · [film stock] · [location / year]</span>
+            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
+            <span class="gallery-meta">FW45 · Nikkor SW 65 mm · 6×12 · Lucky 200 · Shanghai</span>
           </figcaption>
         </figure>
 
-        <figure class="gallery-item" data-lens="rg55" data-back="6x12">
-          <div class="img-placeholder pano">Curated 03<br/>6×12 · Grandagon 55 mm<br/>Photographer name</div>
+        <figure class="gallery-item" data-lens="rgn75" data-back="6x12">
+          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/260227-sl45-rodenstock-75mm-e1000.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/a__sajinga/md/260227-sl45-rodenstock-75mm-e1000.jpg" alt="Han River at dusk — soft purple twilight over a city silhouette" loading="lazy">
+          </a>
           <figcaption>
-            <span class="gallery-photographer"><a href="#">Photographer Name</a></span>
-            <span class="gallery-meta">SL45 Slim · Grandagon 55 mm · 6×12 · [film stock] · [location / year]</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="rgn75" data-back="instax">
-          <div class="img-placeholder instax">Curated 04<br/>Instax · Grandagon-N 75 mm<br/>Photographer name</div>
-          <figcaption>
-            <span class="gallery-photographer"><a href="#">Photographer Name</a></span>
-            <span class="gallery-meta">SL45 Slim · Grandagon-N 75 mm · LomoGraflok Instax · [location / year]</span>
+            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
+            <span class="gallery-meta">SL45 · Rodenstock 75 mm · 6×12 · Ektachrome E100 · Seoul</span>
           </figcaption>
         </figure>
 
         <figure class="gallery-item" data-lens="rg90" data-back="6x12">
-          <div class="img-placeholder pano">Curated 05<br/>6×12 · Rodenstock Grandagon 90 mm<br/>Photographer name</div>
+          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/sl45-rodenstock-90mm-6x12-1.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/anjichrome/md/sl45-rodenstock-90mm-6x12-1.jpg" alt="6×12 panorama on SL45 with Rodenstock 90 mm" loading="lazy">
+          </a>
           <figcaption>
-            <span class="gallery-photographer"><a href="#">Photographer Name</a></span>
-            <span class="gallery-meta">SL45 MP · Grandagon 90 mm f/6.8 · 6×12 · [film stock] · [location / year]</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="mp75" data-back="6x12">
-          <div class="img-placeholder pano">Curated 06<br/>6×12 · Mamiya Press 75 mm<br/>Photographer name</div>
-          <figcaption>
-            <span class="gallery-photographer"><a href="#">Photographer Name</a></span>
-            <span class="gallery-meta">FW69 · Mamiya Press 75 mm f/5.6 · 6×12 · [film stock] · [location / year]</span>
+            <span class="gallery-photographer"><a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener">@anjichrome</a></span>
+            <span class="gallery-meta">SL45 · Rodenstock 90 mm · 6×12</span>
           </figcaption>
         </figure>
 
         <figure class="gallery-item" data-lens="mp65" data-back="instax">
-          <div class="img-placeholder instax">Curated 07<br/>Instax · Mamiya 65 mm<br/>Photographer name</div>
+          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/fw69-mamiya-65mm-instax-1.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/anjichrome/md/fw69-mamiya-65mm-instax-1.jpg" alt="Instax frame on FW69 with Mamiya Press 65 mm" loading="lazy">
+          </a>
           <figcaption>
-            <span class="gallery-photographer"><a href="#">Photographer Name</a></span>
-            <span class="gallery-meta">FW69 · Mamiya Press 65 mm f/6.3 · LomoGraflok Instax · [location / year]</span>
+            <span class="gallery-photographer"><a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener">@anjichrome</a></span>
+            <span class="gallery-meta">FW69 · Mamiya Press 65 mm · LomoGraflok Instax</span>
           </figcaption>
         </figure>
 
-        <figure class="gallery-item" data-lens="sa90" data-back="6x12">
-          <div class="img-placeholder pano">Curated 08<br/>6×12 · Schneider Super-Angulon 90 mm<br/>Photographer name</div>
+        <figure class="gallery-item" data-lens="rg90" data-back="4x5">
+          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/sl45-rodenstock-90mm-4x5-1.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/anjichrome/md/sl45-rodenstock-90mm-4x5-1.jpg" alt="4×5 sheet on SL45 with Rodenstock 90 mm" loading="lazy">
+          </a>
           <figcaption>
-            <span class="gallery-photographer"><a href="#">Photographer Name</a></span>
-            <span class="gallery-meta">SL45 MP · Schneider Super-Angulon 90 mm · 6×12 · [film stock] · [location / year]</span>
+            <span class="gallery-photographer"><a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener">@anjichrome</a></span>
+            <span class="gallery-meta">SL45 · Rodenstock 90 mm · 4×5 sheet</span>
           </figcaption>
         </figure>
 
-        <figure class="gallery-item" data-lens="nik65" data-back="4x5">
-          <div class="img-placeholder sheet45">Curated 09<br/>4×5 sheet · Nikkor SW 65 mm<br/>Photographer name</div>
+        <figure class="gallery-item" data-lens="mp75" data-back="6x12">
+          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/251017-o-zone-fw45-mamiya-75mm-71650002.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/a__sajinga/md/251017-o-zone-fw45-mamiya-75mm-71650002.jpg" alt="6×12 panorama on FW45 with Mamiya Press 75 mm" loading="lazy">
+          </a>
           <figcaption>
-            <span class="gallery-photographer"><a href="#">Photographer Name</a></span>
-            <span class="gallery-meta">SL45 MP · Nikkor SW 65 mm f/4 · 4×5 sheet · [film stock] · [location / year]</span>
+            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
+            <span class="gallery-meta">FW45 · Mamiya Press 75 mm · 6×12</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-lens="nik65" data-back="6x12">
+          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/fw45-nikkor-65mm-6x12-3.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/anjichrome/md/fw45-nikkor-65mm-6x12-3.jpg" alt="6×12 panorama on FW45 with Nikkor SW 65 mm" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="gallery-photographer"><a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener">@anjichrome</a></span>
+            <span class="gallery-meta">FW45 · Nikkor SW 65 mm · 6×12</span>
           </figcaption>
         </figure>
 
         <figure class="gallery-item" data-lens="mp50" data-back="instax">
-          <div class="img-placeholder instax">Curated 10<br/>Instax · Mamiya 50 mm<br/>Photographer name</div>
+          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/fw69-mamiya-50mm-instax-1.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/anjichrome/md/fw69-mamiya-50mm-instax-1.jpg" alt="Instax frame on FW69 with Mamiya Press 50 mm" loading="lazy">
+          </a>
           <figcaption>
-            <span class="gallery-photographer"><a href="#">Photographer Name</a></span>
-            <span class="gallery-meta">FW69 · Mamiya Press 50 mm f/6.3 · LomoGraflok Instax · [location / year]</span>
+            <span class="gallery-photographer"><a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener">@anjichrome</a></span>
+            <span class="gallery-meta">FW69 · Mamiya Press 50 mm · LomoGraflok Instax</span>
           </figcaption>
         </figure>
 
-        <figure class="gallery-item" data-lens="rgn75" data-back="6x9">
-          <div class="img-placeholder six9">Curated 11<br/>6×9 · Grandagon-N 75 mm<br/>Photographer name</div>
+        <figure class="gallery-item" data-lens="rgn75" data-back="6x12">
+          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/260307-sl45-rodenstock-75mm-gold200.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/a__sajinga/md/260307-sl45-rodenstock-75mm-gold200.jpg" alt="Daytime panorama — vintage sedans in a parking lot under bare trees" loading="lazy">
+          </a>
           <figcaption>
-            <span class="gallery-photographer"><a href="#">Photographer Name</a></span>
-            <span class="gallery-meta">SL45 Slim · Grandagon-N 75 mm · Horseman 6×9 · [film stock] · [location / year]</span>
+            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
+            <span class="gallery-meta">SL45 · Rodenstock 75 mm · 6×12 · Kodak Gold 200</span>
           </figcaption>
         </figure>
 
-        <figure class="gallery-item" data-lens="mp127" data-back="6x12">
-          <div class="img-placeholder pano">Curated 12<br/>6×12 · Mamiya Press 127 mm<br/>Photographer name</div>
+        <figure class="gallery-item" data-lens="rgn75" data-back="6x7">
+          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/260220-sl45-rodenstock-75mm-portra-400.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/a__sajinga/md/260220-sl45-rodenstock-75mm-portra-400.jpg" alt="Medium-format frame on SL45 with Rodenstock 75 mm" loading="lazy">
+          </a>
           <figcaption>
-            <span class="gallery-photographer"><a href="#">Photographer Name</a></span>
-            <span class="gallery-meta">FW69 · Mamiya Press 127 mm f/4.7 · 6×12 · [film stock] · [location / year]</span>
+            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
+            <span class="gallery-meta">SL45 · Rodenstock 75 mm · Kodak Portra 400</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-lens="nik65" data-back="6x12">
+          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/251121-fw45-nikkor-65mm-superia-100.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/a__sajinga/md/251121-fw45-nikkor-65mm-superia-100.jpg" alt="Vertical 6×12 frame on FW45 with Nikkor SW 65 mm" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
+            <span class="gallery-meta">FW45 · Nikkor SW 65 mm · 6×12 (vertical) · Fuji Superia 100</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-item" data-lens="rgn75" data-back="6x7">
+          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/260223-sl45-rodenstock-75mm-gold-200.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/a__sajinga/md/260223-sl45-rodenstock-75mm-gold-200.jpg" alt="Medium-format frame on SL45 with Rodenstock 75 mm" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
+            <span class="gallery-meta">SL45 · Rodenstock 75 mm · Kodak Gold 200</span>
           </figcaption>
         </figure>
 
@@ -203,18 +249,23 @@
 
       <div class="featured-photographer reveal">
         <div class="featured-images">
-          <div class="img-placeholder">Featured shot 1<br/>Lens / back / location</div>
-          <div class="img-placeholder">Featured shot 2<br/>Lens / back / location</div>
-          <div class="img-placeholder">Featured shot 3<br/>Lens / back / location</div>
-          <div class="img-placeholder">Featured shot 4<br/>Lens / back / location</div>
+          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/fw45-nikkor-65mm-6x12-2.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/anjichrome/md/fw45-nikkor-65mm-6x12-2.jpg" alt="6×12 panorama on FW45 with Nikkor SW 65 mm" loading="lazy">
+          </a>
+          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/sl45-rodenstock-90mm-6x12-2.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/anjichrome/md/sl45-rodenstock-90mm-6x12-2.jpg" alt="6×12 panorama on SL45 with Rodenstock 90 mm" loading="lazy">
+          </a>
+          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/sl45-rodenstock-90mm-4x5-2.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/anjichrome/md/sl45-rodenstock-90mm-4x5-2.jpg" alt="4×5 sheet on SL45 with Rodenstock 90 mm" loading="lazy">
+          </a>
+          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/fw69-mamiya-65mm-instax-2.jpg" data-lightbox>
+            <img class="gallery-img" src="assets/gallery/anjichrome/md/fw69-mamiya-65mm-instax-2.jpg" alt="Instax frame on FW69 with Mamiya Press 65 mm" loading="lazy">
+          </a>
         </div>
         <div class="featured-bio">
-          <span class="featured-handle">@photographer_handle</span>
-          <h3>Photographer Name</h3>
-          <p>Short bio paragraph — where they shoot, what they shoot, why they picked the O.ZONE. Two to three sentences, written in their voice or close to it.</p>
-          <p style="margin-top:12px;">A second optional paragraph — workflow, favourite combination, a story behind one of the photos above.</p>
+          <h3>@anjichrome</h3>
           <div class="featured-cta">
-            <a href="#" class="btn btn-link">See more of their work</a>
+            <a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener" class="btn btn-link">See more of their work</a>
           </div>
         </div>
       </div>

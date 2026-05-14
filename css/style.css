@@ -1233,6 +1233,63 @@ button { font: inherit; }
   font-variant-numeric: tabular-nums;
 }
 
+/* Real photos (replaces .img-placeholder once a gallery slot has an image). */
+.gallery-img-link {
+  display: block;
+  cursor: zoom-in;
+  line-height: 0;
+  background: var(--line-soft);
+}
+.gallery-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* Hero panorama is always cropped to 2:1 so the marquee shape stays consistent
+   regardless of which random photo loads. */
+.gallery-hero .gallery-img {
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+}
+/* Featured-photographer grid: uniform 4:3 tiles so the 2×2 grid stays clean
+   even when the underlying photos are mixed aspects (panoramas, instax, 4×5). */
+.featured-images .gallery-img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* ----- Lightbox (fullscreen viewer for gallery photos) ----- */
+/* One click to zoom in (from thumbnail), one click anywhere to zoom out.
+   Background + image both fade/scale together for a calm open/close. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 20, 22, 0.93);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+  cursor: zoom-out;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .28s var(--ease);
+}
+.lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  cursor: zoom-out;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  transform: scale(0.96);
+  transition: transform .28s var(--ease);
+}
+.lightbox.open .lightbox-img { transform: scale(1); }
+
 /* Instagram embed grid (Featured posts on gallery) */
 .ig-grid {
   display: grid;
