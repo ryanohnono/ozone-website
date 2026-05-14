@@ -227,19 +227,28 @@
         // Pool is built from compressed photos in assets/gallery/{photog}/{lg,md}/.
         (function () {
           var pool = [
-            { dir: 'a__sajinga', slug: 'fw45-nikkor-65-provia-100f',         lens: 'Nikkor SW 65 mm', handle: 'a__sajinga' },
-            { dir: 'a__sajinga', slug: 'fw45-nikkor65-lucky200',              lens: 'Nikkor SW 65 mm', handle: 'a__sajinga' },
-            { dir: 'a__sajinga', slug: '260227-sl45-rodenstock-75mm-e1000',   lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
-            { dir: 'a__sajinga', slug: '260307-sl45-rodenstock-75mm-gold200', lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
-            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-1',             lens: 'Nikkor SW 65 mm', handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-2',             lens: 'Nikkor SW 65 mm', handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-3',             lens: 'Nikkor SW 65 mm', handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-4',             lens: 'Nikkor SW 65 mm', handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-5',             lens: 'Nikkor SW 65 mm', handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-6',             lens: 'Nikkor SW 65 mm', handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'sl45-rodenstock-90mm-6x12-1',         lens: 'Grandagon 90 mm', handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'sl45-rodenstock-90mm-6x12-2',         lens: 'Grandagon 90 mm', handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'sl45-rodenstock-90mm-6x12-3',         lens: 'Grandagon 90 mm', handle: 'anjichrome' },
+            // a__sajinga · Nikkor 65 · 6×12 landscape
+            { dir: 'a__sajinga', slug: 'fw45-nikkor-65-provia-100f',                lens: 'Nikkor SW 65 mm',   handle: 'a__sajinga' },
+            { dir: 'a__sajinga', slug: 'fw45-nikkor65-lucky200',                    lens: 'Nikkor SW 65 mm',   handle: 'a__sajinga' },
+            // a__sajinga · Grandagon-N 75 · 6×12 landscape
+            { dir: 'a__sajinga', slug: '260227-sl45-rodenstock-75mm-e1000',         lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
+            { dir: 'a__sajinga', slug: '260307-sl45-rodenstock-75mm-gold200',       lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
+            { dir: 'a__sajinga', slug: '260218-sl45-75mm-lomo-400-612',             lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
+            { dir: 'a__sajinga', slug: '260307-sl45-rodenstock-75-gold-200-612',    lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
+            { dir: 'a__sajinga', slug: '260325-sl45-rodenstock-75-612-ektar',       lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
+            { dir: 'a__sajinga', slug: '260325-sl45-rodenstock-75-portar-400-612',  lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
+            { dir: 'a__sajinga', slug: '260326-sl45-rodenstock-75-gold200-612',     lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
+            // anjichrome · Nikkor 65 · 6×12 landscape (films now identified)
+            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-portra-400-1',        lens: 'Nikkor SW 65 mm',   handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-portra-400-2',        lens: 'Nikkor SW 65 mm',   handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-e100-3',              lens: 'Nikkor SW 65 mm',   handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-e100-e100-4',         lens: 'Nikkor SW 65 mm',   handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-5',                   lens: 'Nikkor SW 65 mm',   handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-e100-6',              lens: 'Nikkor SW 65 mm',   handle: 'anjichrome' },
+            // anjichrome · Grandagon 90 · 6×12
+            { dir: 'anjichrome', slug: 'sl45-rodenstock-90mm-6x12-1',               lens: 'Grandagon 90 mm',   handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'sl45-rodenstock-90mm-6x12-2',               lens: 'Grandagon 90 mm',   handle: 'anjichrome' },
+            { dir: 'anjichrome', slug: 'sl45-rodenstock-90mm-6x12-3',               lens: 'Grandagon 90 mm',   handle: 'anjichrome' },
           ];
           for (var i = pool.length - 1; i > 0; i--) {
             var j = Math.floor(Math.random() * (i + 1));
