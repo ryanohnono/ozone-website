@@ -1185,6 +1185,35 @@ button { font: inherit; }
   display: block;
 }
 
+/* Lens-variants sub-section divider (lenses.html — between main lineup
+   and the no-photo "Other variants" group). */
+.lens-variants-intro {
+  text-align: center;
+  margin: 56px auto 24px;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7f7f83;
+  font-weight: 500;
+}
+.cards.cards-compact {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+.cards.cards-compact .card {
+  padding: 22px;
+  font-size: 14.5px;
+}
+.cards.cards-compact .card h3 {
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+@media (max-width: 880px) {
+  .cards.cards-compact { grid-template-columns: 1fr; max-width: 480px; }
+}
+
 /* ----- Sample photo gallery grid ----- */
 .sample-grid {
   display: grid;
@@ -1230,9 +1259,24 @@ button { font: inherit; }
   padding: 0 22px;
   column-count: 3;
   column-gap: 28px;
+  transition: opacity .18s var(--ease);
 }
+.gallery-grid.shuffling { opacity: 0; }
 @media (max-width: 960px) { .gallery-grid { column-count: 2; } }
 @media (max-width: 600px) { .gallery-grid { column-count: 1; } }
+
+/* Shuffle button below curated grid — discreet, centered, hints at the
+   interaction without competing with the photos. */
+.curated-shuffle {
+  max-width: var(--max-w);
+  margin: 32px auto 0;
+  padding: 0 22px;
+  text-align: center;
+}
+.curated-shuffle #curated-shuffle-btn {
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
 .gallery-item {
   margin: 0 0 36px;
   break-inside: avoid;

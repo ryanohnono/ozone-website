@@ -73,6 +73,7 @@
         { dir: 'eeeemyunjun', slug: '250911-fw45-nikkor-65-612-aerocolor',        lens: 'Nikkor SW 65 mm',   title: null,       alt: 'Mirror sphere sculpture — FW45, Nikkor SW 65 mm, 6×12 on Aerocolor' },
       ];
       var pick = HEROES[Math.floor(Math.random() * HEROES.length)];
+      window.GALLERY_HERO_PICK = pick;  // shared with featured-photographer script below
       var h = handleOf(pick.dir);
       var img = document.getElementById('gallery-hero-img');
       var link = document.getElementById('gallery-hero-link');
@@ -120,6 +121,10 @@
       </div>
 
       <div class="gallery-grid" id="curated-grid"></div>
+
+      <div class="curated-shuffle">
+        <button type="button" id="curated-shuffle-btn" class="btn btn-link" aria-label="Shuffle the curated grid">↻ Shuffle</button>
+      </div>
     </div>
   </section>
   <script>
@@ -274,32 +279,92 @@
       // (no leading/trailing underscores so static-site builds don't drop it).
       function handleOf(dir) { return dir === 'jangbaljang' ? '_jangbaljang_' : dir; }
 
-      var picks = [];
-      Object.keys(POOL).forEach(function (dir) {
-        var photos = POOL[dir].slice();
-        shuffle(photos);
-        photos.slice(0, N).forEach(function (slug) {
-          picks.push({ dir: dir, slug: slug });
+      // Fill the curated masonry grid: N photos randomly picked from EACH
+      // photographer, combined and shuffled. Equal share by construction.
+      function populateCurated() {
+        var picks = [];
+        Object.keys(POOL).forEach(function (dir) {
+          var photos = POOL[dir].slice();
+          shuffle(photos);
+          photos.slice(0, N).forEach(function (slug) {
+            picks.push({ dir: dir, slug: slug });
+          });
         });
-      });
-      shuffle(picks);
+        shuffle(picks);
 
-      var grid = document.getElementById('curated-grid');
-      picks.forEach(function (p) {
-        var lens = inferLens(p.slug);
-        var h = handleOf(p.dir);
-        var fig = document.createElement('figure');
-        fig.className = 'gallery-item';
-        fig.innerHTML =
-          '<a class="gallery-img-link" href="assets/gallery/' + p.dir + '/lg/' + p.slug + '.jpg" data-lightbox>' +
-          '<img class="gallery-img" src="assets/gallery/' + p.dir + '/md/' + p.slug + '.jpg" alt="' + lens + '" loading="lazy">' +
-          '</a>' +
-          '<figcaption>' +
-          '<span class="gallery-photographer"><a href="https://www.instagram.com/' + h + '/" target="_blank" rel="noopener">@' + h + '</a></span>' +
-          '<span class="gallery-meta">' + lens + '</span>' +
-          '</figcaption>';
-        grid.appendChild(fig);
-      });
+        var grid = document.getElementById('curated-grid');
+        grid.innerHTML = '';
+        picks.forEach(function (p) {
+          var lens = inferLens(p.slug);
+          var h = handleOf(p.dir);
+          var fig = document.createElement('figure');
+          fig.className = 'gallery-item';
+          fig.innerHTML =
+            '<a class="gallery-img-link" href="assets/gallery/' + p.dir + '/lg/' + p.slug + '.jpg" data-lightbox>' +
+            '<img class="gallery-img" src="assets/gallery/' + p.dir + '/md/' + p.slug + '.jpg" alt="' + lens + '" loading="lazy">' +
+            '</a>' +
+            '<figcaption>' +
+            '<span class="gallery-photographer"><a href="https://www.instagram.com/' + h + '/" target="_blank" rel="noopener">@' + h + '</a></span>' +
+            '<span class="gallery-meta">' + lens + '</span>' +
+            '</figcaption>';
+          grid.appendChild(fig);
+        });
+      }
+
+      // Featured-photographer block — match the hero's photographer; 4 random
+      // photos from their pool. Stays in sync with the hero, so each page load
+      // gives one photographer's spotlight in both the hero and the feature.
+      function populateFeatured(dir) {
+        if (!POOL[dir]) return;
+        var pool = POOL[dir].slice();
+        shuffle(pool);
+        var picks = pool.slice(0, 4);
+        var h = handleOf(dir);
+
+        var imgsEl = document.getElementById('featured-images');
+        imgsEl.innerHTML = '';
+        picks.forEach(function (slug) {
+          var a = document.createElement('a');
+          a.className = 'gallery-img-link';
+          a.href = 'assets/gallery/' + dir + '/lg/' + slug + '.jpg';
+          a.setAttribute('data-lightbox', '');
+          a.innerHTML = '<img class="gallery-img" src="assets/gallery/' + dir + '/md/' + slug + '.jpg" alt="" loading="lazy">';
+          imgsEl.appendChild(a);
+        });
+
+        document.getElementById('featured-handle').textContent = '@' + h;
+        document.getElementById('featured-cta-link').href = 'https://www.instagram.com/' + h + '/';
+      }
+
+      // Initial render — wait for DOM ready since the featured-photographer
+      // section appears AFTER this <script> in source order.
+      function init() {
+        populateCurated();
+        var heroPick = window.GALLERY_HERO_PICK;
+        if (heroPick) populateFeatured(heroPick.dir);
+
+        // Shuffle button: re-runs the curated populate with a brief fade so the
+        // swap reads as intentional. Featured-photographer stays put — it tracks
+        // the hero, not the curated grid.
+        var shuffleBtn = document.getElementById('curated-shuffle-btn');
+        if (shuffleBtn) {
+          shuffleBtn.addEventListener('click', function () {
+            var grid = document.getElementById('curated-grid');
+            grid.classList.add('shuffling');
+            setTimeout(function () {
+              populateCurated();
+              requestAnimationFrame(function () {
+                grid.classList.remove('shuffling');
+              });
+            }, 180);
+          });
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
     })();
   </script>
 
@@ -312,25 +377,14 @@
         <p class="section-lede">A rotating spotlight on one O.ZONE community member — their work, their workflow, their voice.</p>
       </div>
 
+      <!-- 4 photos + handle + CTA all populated by JS to match the hero photographer
+           (see script at bottom of body). -->
       <div class="featured-photographer reveal">
-        <div class="featured-images">
-          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/fw45-nikkor-65mm-6x12-portra-400-2.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/anjichrome/md/fw45-nikkor-65mm-6x12-portra-400-2.jpg" alt="6×12 panorama on FW45 with Nikkor SW 65 mm on Portra 400" loading="lazy">
-          </a>
-          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/sl45-rodenstock-90mm-6x12-2.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/anjichrome/md/sl45-rodenstock-90mm-6x12-2.jpg" alt="6×12 panorama on SL45 with Rodenstock 90 mm" loading="lazy">
-          </a>
-          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/sl45-rodenstock-90mm-4x5-provia-100f-2.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/anjichrome/md/sl45-rodenstock-90mm-4x5-provia-100f-2.jpg" alt="4×5 sheet on SL45 with Rodenstock 90 mm on Provia 100F" loading="lazy">
-          </a>
-          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/fw69-mamiya-65mm-instax-2.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/anjichrome/md/fw69-mamiya-65mm-instax-2.jpg" alt="Instax frame on FW69 with Mamiya Press 65 mm" loading="lazy">
-          </a>
-        </div>
+        <div class="featured-images" id="featured-images"></div>
         <div class="featured-bio">
-          <h3>@anjichrome</h3>
+          <h3 id="featured-handle"></h3>
           <div class="featured-cta">
-            <a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener" class="btn btn-link">See more of their work</a>
+            <a id="featured-cta-link" href="" target="_blank" rel="noopener" class="btn btn-link">See more of their work</a>
           </div>
         </div>
       </div>
