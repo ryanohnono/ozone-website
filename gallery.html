@@ -60,22 +60,28 @@
   <script>
     // Hero rotation: one panorama per active O.ZONE photographer. Equal share — random
     // pick on each load. Add the 5th member here when their account joins.
+    //
+    // Note: `dir` is the folder name in assets/gallery/; the display handle (@...) may
+    // differ if the IG handle uses leading/trailing underscores (which static-site
+    // builds drop). handleOf() maps dir → display handle.
     (function () {
+      function handleOf(dir) { return dir === 'jangbaljang' ? '_jangbaljang_' : dir; }
       var HEROES = [
-        { handle: 'a__sajinga',    slug: 'fw45-nikkor-65-provia-100f',                 lens: 'Nikkor SW 65 mm',   title: 'Shanghai', alt: 'Shanghai daytime skyline — FW45, Nikkor SW 65 mm, 6×12 on Provia 100F' },
-        { handle: 'anjichrome',    slug: 'fw45-nikkor-65mm-6x12-portra-400-1',         lens: 'Nikkor SW 65 mm',   title: 'Family',   alt: 'Summer playground scene — FW45, Nikkor SW 65 mm, 6×12 on Portra 400' },
-        { handle: '_jangbaljang_', slug: '260327-sl45-rodenstock-75-612-provia100f-1', lens: 'Grandagon-N 75 mm', title: null,       alt: 'Harbor with fisherman — SL45, Rodenstock 75 mm, 6×12 on Provia 100F' },
-        { handle: 'eeeemyunjun',   slug: '250911-fw45-nikkor-65-612-aerocolor',        lens: 'Nikkor SW 65 mm',   title: null,       alt: 'Mirror sphere sculpture — FW45, Nikkor SW 65 mm, 6×12 on Aerocolor' },
+        { dir: 'a__sajinga',  slug: 'fw45-nikkor-65-provia-100f',                 lens: 'Nikkor SW 65 mm',   title: 'Shanghai', alt: 'Shanghai daytime skyline — FW45, Nikkor SW 65 mm, 6×12 on Provia 100F' },
+        { dir: 'anjichrome',  slug: 'fw45-nikkor-65mm-6x12-portra-400-1',         lens: 'Nikkor SW 65 mm',   title: 'Family',   alt: 'Summer playground scene — FW45, Nikkor SW 65 mm, 6×12 on Portra 400' },
+        { dir: 'jangbaljang', slug: '260327-sl45-rodenstock-75-612-provia100f-1', lens: 'Grandagon-N 75 mm', title: null,       alt: 'Harbor with fisherman — SL45, Rodenstock 75 mm, 6×12 on Provia 100F' },
+        { dir: 'eeeemyunjun', slug: '250911-fw45-nikkor-65-612-aerocolor',        lens: 'Nikkor SW 65 mm',   title: null,       alt: 'Mirror sphere sculpture — FW45, Nikkor SW 65 mm, 6×12 on Aerocolor' },
       ];
       var pick = HEROES[Math.floor(Math.random() * HEROES.length)];
+      var h = handleOf(pick.dir);
       var img = document.getElementById('gallery-hero-img');
       var link = document.getElementById('gallery-hero-link');
       var cap = document.getElementById('gallery-hero-caption');
-      img.src = 'assets/gallery/' + pick.handle + '/md/' + pick.slug + '.jpg';
+      img.src = 'assets/gallery/' + pick.dir + '/md/' + pick.slug + '.jpg';
       img.alt = pick.alt;
-      link.href = 'assets/gallery/' + pick.handle + '/lg/' + pick.slug + '.jpg';
+      link.href = 'assets/gallery/' + pick.dir + '/lg/' + pick.slug + '.jpg';
       var titlePart = pick.title ? ('<strong>' + pick.title + '</strong> · ') : '';
-      cap.innerHTML = titlePart + pick.lens + ' · <a href="https://www.instagram.com/' + pick.handle + '/" target="_blank" rel="noopener">@' + pick.handle + '</a>';
+      cap.innerHTML = titlePart + pick.lens + ' · <a href="https://www.instagram.com/' + h + '/" target="_blank" rel="noopener">@' + h + '</a>';
     })();
   </script>
 
@@ -170,7 +176,7 @@
           'sl45-rodenstock-90mm-6x12-2',
           'sl45-rodenstock-90mm-6x12-3',
         ],
-        '_jangbaljang_': [
+        'jangbaljang': [
           '251102-sl45-nikkor-65-612-ilford-xp2-1',
           '251104-sl45-nikkor-65-612-ektar100-1',
           '251205-sl45-rodenstock-90-612-hp5-400-1',
@@ -263,12 +269,17 @@
         return '';
       }
 
+      // Map a folder name to its display IG handle. Most photographers' folder
+      // names match their handle; @_jangbaljang_'s folder is `jangbaljang/`
+      // (no leading/trailing underscores so static-site builds don't drop it).
+      function handleOf(dir) { return dir === 'jangbaljang' ? '_jangbaljang_' : dir; }
+
       var picks = [];
-      Object.keys(POOL).forEach(function (handle) {
-        var photos = POOL[handle].slice();
+      Object.keys(POOL).forEach(function (dir) {
+        var photos = POOL[dir].slice();
         shuffle(photos);
         photos.slice(0, N).forEach(function (slug) {
-          picks.push({ handle: handle, slug: slug });
+          picks.push({ dir: dir, slug: slug });
         });
       });
       shuffle(picks);
@@ -276,14 +287,15 @@
       var grid = document.getElementById('curated-grid');
       picks.forEach(function (p) {
         var lens = inferLens(p.slug);
+        var h = handleOf(p.dir);
         var fig = document.createElement('figure');
         fig.className = 'gallery-item';
         fig.innerHTML =
-          '<a class="gallery-img-link" href="assets/gallery/' + p.handle + '/lg/' + p.slug + '.jpg" data-lightbox>' +
-          '<img class="gallery-img" src="assets/gallery/' + p.handle + '/md/' + p.slug + '.jpg" alt="' + lens + '" loading="lazy">' +
+          '<a class="gallery-img-link" href="assets/gallery/' + p.dir + '/lg/' + p.slug + '.jpg" data-lightbox>' +
+          '<img class="gallery-img" src="assets/gallery/' + p.dir + '/md/' + p.slug + '.jpg" alt="' + lens + '" loading="lazy">' +
           '</a>' +
           '<figcaption>' +
-          '<span class="gallery-photographer"><a href="https://www.instagram.com/' + p.handle + '/" target="_blank" rel="noopener">@' + p.handle + '</a></span>' +
+          '<span class="gallery-photographer"><a href="https://www.instagram.com/' + h + '/" target="_blank" rel="noopener">@' + h + '</a></span>' +
           '<span class="gallery-meta">' + lens + '</span>' +
           '</figcaption>';
         grid.appendChild(fig);

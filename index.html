@@ -251,7 +251,7 @@
               'sl45-rodenstock-90mm-6x12-2',
               'sl45-rodenstock-90mm-6x12-3',
             ],
-            '_jangbaljang_': [
+            'jangbaljang': [
               '251102-sl45-nikkor-65-612-ilford-xp2-1',
               '251104-sl45-nikkor-65-612-ektar100-1',
               '251205-sl45-rodenstock-90-612-hp5-400-1',
@@ -306,12 +306,15 @@
             return '';
           }
 
-          var handles = Object.keys(POOL);
-          shuffle(handles);
-          var picks = handles.slice(0, 3).map(function (handle) {
-            var photos = POOL[handle].slice();
+          // Map a folder name to its display IG handle (see gallery.html for context).
+          function handleOf(dir) { return dir === 'jangbaljang' ? '_jangbaljang_' : dir; }
+
+          var dirs = Object.keys(POOL);
+          shuffle(dirs);
+          var picks = dirs.slice(0, 3).map(function (dir) {
+            var photos = POOL[dir].slice();
             shuffle(photos);
-            return { handle: handle, slug: photos[0] };
+            return { dir: dir, slug: photos[0] };
           });
 
           var figs = document.querySelectorAll('#index-sample-grid figure');
@@ -321,10 +324,11 @@
             var img = f.querySelector('img');
             var cap = f.querySelector('figcaption');
             var lens = inferLens(p.slug);
-            a.href = 'assets/gallery/' + p.handle + '/lg/' + p.slug + '.jpg';
-            img.src = 'assets/gallery/' + p.handle + '/md/' + p.slug + '.jpg';
+            var h = handleOf(p.dir);
+            a.href = 'assets/gallery/' + p.dir + '/lg/' + p.slug + '.jpg';
+            img.src = 'assets/gallery/' + p.dir + '/md/' + p.slug + '.jpg';
             img.alt = lens + ' — 6×12 on O.ZONE';
-            cap.innerHTML = '<strong>' + lens + '</strong> · <a href="https://www.instagram.com/' + p.handle + '/" target="_blank" rel="noopener">@' + p.handle + '</a>';
+            cap.innerHTML = '<strong>' + lens + '</strong> · <a href="https://www.instagram.com/' + h + '/" target="_blank" rel="noopener">@' + h + '</a>';
           });
         })();
       </script>
