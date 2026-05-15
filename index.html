@@ -223,48 +223,108 @@
         <a href="gallery.html" class="btn btn-link">See the gallery →</a>
       </p>
       <script>
-        // Pick 3 distinct random 6×12 shots on large-format glass for the teaser.
-        // Pool is built from compressed photos in assets/gallery/{photog}/{lg,md}/.
+        // Index teaser — equal share across O.ZONE photographers.
+        // On every page load: shuffle the 4 active members, take 3, pick one
+        // random landscape 6×12 LF panorama from each. Every visit shows three
+        // different photographers' work. Add 5th member's slugs below when ready.
         (function () {
-          var pool = [
-            // a__sajinga · Nikkor 65 · 6×12 landscape
-            { dir: 'a__sajinga', slug: 'fw45-nikkor-65-provia-100f',                lens: 'Nikkor SW 65 mm',   handle: 'a__sajinga' },
-            { dir: 'a__sajinga', slug: 'fw45-nikkor65-lucky200',                    lens: 'Nikkor SW 65 mm',   handle: 'a__sajinga' },
-            // a__sajinga · Grandagon-N 75 · 6×12 landscape
-            { dir: 'a__sajinga', slug: '260227-sl45-rodenstock-75mm-e1000',         lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
-            { dir: 'a__sajinga', slug: '260307-sl45-rodenstock-75mm-gold200',       lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
-            { dir: 'a__sajinga', slug: '260218-sl45-75mm-lomo-400-612',             lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
-            { dir: 'a__sajinga', slug: '260307-sl45-rodenstock-75-gold-200-612',    lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
-            { dir: 'a__sajinga', slug: '260325-sl45-rodenstock-75-612-ektar',       lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
-            { dir: 'a__sajinga', slug: '260325-sl45-rodenstock-75-portar-400-612',  lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
-            { dir: 'a__sajinga', slug: '260326-sl45-rodenstock-75-gold200-612',     lens: 'Grandagon-N 75 mm', handle: 'a__sajinga' },
-            // anjichrome · Nikkor 65 · 6×12 landscape (films now identified)
-            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-portra-400-1',        lens: 'Nikkor SW 65 mm',   handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-portra-400-2',        lens: 'Nikkor SW 65 mm',   handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-e100-3',              lens: 'Nikkor SW 65 mm',   handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-e100-e100-4',         lens: 'Nikkor SW 65 mm',   handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-5',                   lens: 'Nikkor SW 65 mm',   handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'fw45-nikkor-65mm-6x12-e100-6',              lens: 'Nikkor SW 65 mm',   handle: 'anjichrome' },
-            // anjichrome · Grandagon 90 · 6×12
-            { dir: 'anjichrome', slug: 'sl45-rodenstock-90mm-6x12-1',               lens: 'Grandagon 90 mm',   handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'sl45-rodenstock-90mm-6x12-2',               lens: 'Grandagon 90 mm',   handle: 'anjichrome' },
-            { dir: 'anjichrome', slug: 'sl45-rodenstock-90mm-6x12-3',               lens: 'Grandagon 90 mm',   handle: 'anjichrome' },
-          ];
-          for (var i = pool.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+          var POOL = {
+            'a__sajinga': [
+              'fw45-nikkor-65-provia-100f',
+              'fw45-nikkor65-lucky200',
+              '260227-sl45-rodenstock-75mm-e1000',
+              '260307-sl45-rodenstock-75mm-gold200',
+              '260218-sl45-75mm-lomo-400-612',
+              '260307-sl45-rodenstock-75-gold-200-612',
+              '260325-sl45-rodenstock-75-612-ektar',
+              '260325-sl45-rodenstock-75-portar-400-612',
+              '260326-sl45-rodenstock-75-gold200-612',
+            ],
+            'anjichrome': [
+              'fw45-nikkor-65mm-6x12-portra-400-1',
+              'fw45-nikkor-65mm-6x12-portra-400-2',
+              'fw45-nikkor-65mm-6x12-e100-3',
+              'fw45-nikkor-65mm-6x12-e100-e100-4',
+              'fw45-nikkor-65mm-6x12-5',
+              'fw45-nikkor-65mm-6x12-e100-6',
+              'sl45-rodenstock-90mm-6x12-1',
+              'sl45-rodenstock-90mm-6x12-2',
+              'sl45-rodenstock-90mm-6x12-3',
+            ],
+            '_jangbaljang_': [
+              '251102-sl45-nikkor-65-612-ilford-xp2-1',
+              '251104-sl45-nikkor-65-612-ektar100-1',
+              '251205-sl45-rodenstock-90-612-hp5-400-1',
+              '251205-sl45-rodenstock-90-612-hp5-400-2',
+              '260327-sl45-rodenstock-75-612-provia100f-1',
+              '260327-sl45-rodenstock-75-612-provia100f-2',
+              '260327-sl45-rodenstock-75-612-provia100f-3',
+              '260424-sl45-rodenstock-75-612-ektar100-1',
+              '260424-sl45-rodenstock-75-612-ektar100-2',
+              '260424-sl45-rodenstock-75-612-ektar100-3',
+              '260512-sl45-rodenstock-75-612-cinestill400d-1',
+              '260512-sl45-rodenstock-75-612-cinestill400d-2',
+              '260512-sl45-rodenstock-75-612-cinestill400d-3',
+              '260512-sl45-rodenstock-75-612-cinestill400d-4',
+              '260512-sl45-rodenstock-75-612-cinestill400d-5',
+              '260512-sl45-rodenstock-75-612-cinestill400d-6',
+              '260512-sl45-rodenstock-75-612-cinestill800t-1',
+              '260512-sl45-rodenstock-75-612-cinestill800t-2',
+              '260512-sl45-rodenstock-75-612-cinestill800t-3',
+              '260512-sl45-rodenstock-75-612-cinestill800t-4',
+              '260512-sl45-rodenstock-75-612-ektar100-1',
+              '260512-sl45-rodenstock-75-612-ektar100-2',
+              '260512-sl45-rodenstock-75-612-ektar100-3',
+              '260512-sl45-rodenstock-75-612-ektar100-4',
+            ],
+            'eeeemyunjun': [
+              '250911-fw45-nikkor-65-612-500t',
+              '250911-fw45-nikkor-65-612-500t-2',
+              '250911-fw45-nikkor-65-612-aerocolor',
+              '251024-fw45-nikkor-65-612-e100-1',
+              '251116-fw45-nikkor-65-612-ektar100-1',
+              '251116-fw45-nikkor-65-612-ektar100-2',
+              '260109-fw45-rodenstock-90-612-kodak-ektar-100-2',
+              '260109-fw45-rodenstock-90-612-kodak-ektar-100-4',
+              '260204-sl45-rodenstock-75-612-kodak-gold-200',
+              '260221-sl45-nikon-65-612-ektar-100',
+            ],
+          };
+
+          function shuffle(arr) {
+            for (var i = arr.length - 1; i > 0; i--) {
+              var j = Math.floor(Math.random() * (i + 1));
+              var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+            }
+            return arr;
           }
-          var picks = pool.slice(0, 3);
+          function inferLens(slug) {
+            if (/nik(?:kor|on)-?65/.test(slug)) return 'Nikkor SW 65 mm';
+            if (/(?:^|-)55(?:-|mm|$)/.test(slug)) return 'Grandagon 55 mm';
+            if (/(?:^|-)75(?:-|mm|$)/.test(slug)) return 'Grandagon-N 75 mm';
+            if (/(?:^|-)90(?:-|mm|$)/.test(slug)) return 'Grandagon 90 mm';
+            return '';
+          }
+
+          var handles = Object.keys(POOL);
+          shuffle(handles);
+          var picks = handles.slice(0, 3).map(function (handle) {
+            var photos = POOL[handle].slice();
+            shuffle(photos);
+            return { handle: handle, slug: photos[0] };
+          });
+
           var figs = document.querySelectorAll('#index-sample-grid figure');
           picks.forEach(function (p, i) {
             var f = figs[i];
             var a = f.querySelector('a');
             var img = f.querySelector('img');
             var cap = f.querySelector('figcaption');
-            a.href = 'assets/gallery/' + p.dir + '/lg/' + p.slug + '.jpg';
-            img.src = 'assets/gallery/' + p.dir + '/md/' + p.slug + '.jpg';
-            img.alt = p.lens + ' — 6×12 on O.ZONE';
-            cap.innerHTML = '<strong>' + p.lens + '</strong> · <a href="https://www.instagram.com/' + p.handle + '/" target="_blank" rel="noopener">@' + p.handle + '</a>';
+            var lens = inferLens(p.slug);
+            a.href = 'assets/gallery/' + p.handle + '/lg/' + p.slug + '.jpg';
+            img.src = 'assets/gallery/' + p.handle + '/md/' + p.slug + '.jpg';
+            img.alt = lens + ' — 6×12 on O.ZONE';
+            cap.innerHTML = '<strong>' + lens + '</strong> · <a href="https://www.instagram.com/' + p.handle + '/" target="_blank" rel="noopener">@' + p.handle + '</a>';
           });
         })();
       </script>

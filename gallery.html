@@ -48,33 +48,34 @@
     <p>Work from the O.ZONE community — every body, every lens, every back the system supports.</p>
   </section>
 
-  <!-- Hero panorama (50/50 randomized client-side between two marquee shots) -->
+  <!-- Hero panorama: one strong 6×12 from each active O.ZONE photographer. Random pick on every load. -->
   <section class="section compact">
     <figure class="gallery-hero">
-      <a class="gallery-img-link" id="gallery-hero-link"
-         href="assets/gallery/a__sajinga/lg/fw45-nikkor-65-provia-100f.jpg"
-         data-lightbox>
-        <img class="gallery-img" id="gallery-hero-img"
-             src="assets/gallery/a__sajinga/md/fw45-nikkor-65-provia-100f.jpg"
-             alt="Shanghai skyline at golden hour — FW45, Nikkor SW 65 mm, 6×12 on Provia 100F"
-             loading="eager">
+      <a class="gallery-img-link" id="gallery-hero-link" data-lightbox>
+        <img class="gallery-img" id="gallery-hero-img" alt="" loading="eager">
       </a>
-      <figcaption id="gallery-hero-caption"><strong>Shanghai</strong> · Nikkor SW 65 mm · <a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></figcaption>
+      <figcaption id="gallery-hero-caption"></figcaption>
     </figure>
   </section>
   <script>
-    // 50/50: keep the default hero, or swap to the alternate marquee photo.
-    // Runs immediately after the figure so the swap lands before paint.
+    // Hero rotation: one panorama per active O.ZONE photographer. Equal share — random
+    // pick on each load. Add the 5th member here when their account joins.
     (function () {
-      if (Math.random() < 0.5) return;
+      var HEROES = [
+        { handle: 'a__sajinga',    slug: 'fw45-nikkor-65-provia-100f',                 lens: 'Nikkor SW 65 mm',   title: 'Shanghai', alt: 'Shanghai daytime skyline — FW45, Nikkor SW 65 mm, 6×12 on Provia 100F' },
+        { handle: 'anjichrome',    slug: 'fw45-nikkor-65mm-6x12-portra-400-1',         lens: 'Nikkor SW 65 mm',   title: 'Family',   alt: 'Summer playground scene — FW45, Nikkor SW 65 mm, 6×12 on Portra 400' },
+        { handle: '_jangbaljang_', slug: '260327-sl45-rodenstock-75-612-provia100f-1', lens: 'Grandagon-N 75 mm', title: null,       alt: 'Harbor with fisherman — SL45, Rodenstock 75 mm, 6×12 on Provia 100F' },
+        { handle: 'eeeemyunjun',   slug: '250911-fw45-nikkor-65-612-aerocolor',        lens: 'Nikkor SW 65 mm',   title: null,       alt: 'Mirror sphere sculpture — FW45, Nikkor SW 65 mm, 6×12 on Aerocolor' },
+      ];
+      var pick = HEROES[Math.floor(Math.random() * HEROES.length)];
       var img = document.getElementById('gallery-hero-img');
       var link = document.getElementById('gallery-hero-link');
       var cap = document.getElementById('gallery-hero-caption');
-      if (!img || !link || !cap) return;
-      img.src = 'assets/gallery/anjichrome/md/fw45-nikkor-65mm-6x12-portra-400-1.jpg';
-      img.alt = 'Summer playground scene — FW45, Nikkor SW 65 mm, 6×12 on Portra 400';
-      link.href = 'assets/gallery/anjichrome/lg/fw45-nikkor-65mm-6x12-portra-400-1.jpg';
-      cap.innerHTML = '<strong>Family</strong> · Nikkor SW 65 mm · <a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener">@anjichrome</a>';
+      img.src = 'assets/gallery/' + pick.handle + '/md/' + pick.slug + '.jpg';
+      img.alt = pick.alt;
+      link.href = 'assets/gallery/' + pick.handle + '/lg/' + pick.slug + '.jpg';
+      var titlePart = pick.title ? ('<strong>' + pick.title + '</strong> · ') : '';
+      cap.innerHTML = titlePart + pick.lens + ' · <a href="https://www.instagram.com/' + pick.handle + '/" target="_blank" rel="noopener">@' + pick.handle + '</a>';
     })();
   </script>
 
@@ -112,161 +113,183 @@
         <p class="section-lede">Hand-picked photographs from the O.ZONE users.</p>
       </div>
 
-      <div class="gallery-grid">
-
-        <figure class="gallery-item" data-lens="nik65" data-back="6x12">
-          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/fw45-nikkor65-lucky200.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/a__sajinga/md/fw45-nikkor65-lucky200.jpg" alt="Shanghai Bund at night — neon city reflected on the river" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
-            <span class="gallery-meta">Nikkor SW 65 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="rgn75" data-back="6x12">
-          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/260227-sl45-rodenstock-75mm-e1000.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/a__sajinga/md/260227-sl45-rodenstock-75mm-e1000.jpg" alt="Han River at dusk — soft purple twilight over a city silhouette" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
-            <span class="gallery-meta">Grandagon-N 75 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="rg90" data-back="6x12">
-          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/sl45-rodenstock-90mm-6x12-1.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/anjichrome/md/sl45-rodenstock-90mm-6x12-1.jpg" alt="6×12 panorama on SL45 with Rodenstock 90 mm" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener">@anjichrome</a></span>
-            <span class="gallery-meta">Grandagon 90 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="mp65" data-back="instax">
-          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/fw69-mamiya-65mm-instax-1.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/anjichrome/md/fw69-mamiya-65mm-instax-1.jpg" alt="Instax frame on FW69 with Mamiya Press 65 mm" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener">@anjichrome</a></span>
-            <span class="gallery-meta">Mamiya Press 65 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="rg90" data-back="4x5">
-          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/sl45-rodenstock-90mm-4x5-provia-100f-1.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/anjichrome/md/sl45-rodenstock-90mm-4x5-provia-100f-1.jpg" alt="4×5 sheet on SL45 with Rodenstock 90 mm on Provia 100F" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener">@anjichrome</a></span>
-            <span class="gallery-meta">Grandagon 90 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="mp75" data-back="6x12">
-          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/251017-o-zone-fw45-mamiya-75mm-71650002.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/a__sajinga/md/251017-o-zone-fw45-mamiya-75mm-71650002.jpg" alt="6×12 panorama on FW45 with Mamiya Press 75 mm" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
-            <span class="gallery-meta">Mamiya Press 75 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="nik65" data-back="6x12">
-          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/fw45-nikkor-65mm-6x12-e100-3.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/anjichrome/md/fw45-nikkor-65mm-6x12-e100-3.jpg" alt="6×12 panorama on FW45 with Nikkor SW 65 mm on Ektachrome E100" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener">@anjichrome</a></span>
-            <span class="gallery-meta">Nikkor SW 65 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="mp50" data-back="instax">
-          <a class="gallery-img-link" href="assets/gallery/anjichrome/lg/fw69-mamiya-50mm-instax-1.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/anjichrome/md/fw69-mamiya-50mm-instax-1.jpg" alt="Instax frame on FW69 with Mamiya Press 50 mm" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/anjichrome/" target="_blank" rel="noopener">@anjichrome</a></span>
-            <span class="gallery-meta">Mamiya Press 50 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="rgn75" data-back="6x12">
-          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/260307-sl45-rodenstock-75mm-gold200.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/a__sajinga/md/260307-sl45-rodenstock-75mm-gold200.jpg" alt="Daytime panorama — vintage sedans in a parking lot under bare trees" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
-            <span class="gallery-meta">Grandagon-N 75 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="rgn75" data-back="6x7">
-          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/260220-sl45-rodenstock-75mm-portra-400.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/a__sajinga/md/260220-sl45-rodenstock-75mm-portra-400.jpg" alt="Medium-format frame on SL45 with Rodenstock 75 mm" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
-            <span class="gallery-meta">Grandagon-N 75 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="nik65" data-back="6x12">
-          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/251121-fw45-nikkor-65mm-superia-100.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/a__sajinga/md/251121-fw45-nikkor-65mm-superia-100.jpg" alt="Vertical 6×12 frame on FW45 with Nikkor SW 65 mm" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
-            <span class="gallery-meta">Nikkor SW 65 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="rgn75" data-back="6x7">
-          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/260223-sl45-rodenstock-75mm-gold-200.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/a__sajinga/md/260223-sl45-rodenstock-75mm-gold-200.jpg" alt="Medium-format frame on SL45 with Rodenstock 75 mm" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
-            <span class="gallery-meta">Grandagon-N 75 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="mp127" data-back="6x12">
-          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/250824-o-zone-fw69-mamiya-127.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/a__sajinga/md/250824-o-zone-fw69-mamiya-127.jpg" alt="Han River bridge at sunset on FW69 with Mamiya Press 127 mm" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
-            <span class="gallery-meta">Mamiya Press 127 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="rgn75" data-back="6x7">
-          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/260220-sl45-rodenstock-75-gold-200-linhof-67.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/a__sajinga/md/260220-sl45-rodenstock-75-gold-200-linhof-67.jpg" alt="Greenhouse interior on SL45 with Rodenstock 75 mm on Gold 200, Linhof 6×7 back" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
-            <span class="gallery-meta">Grandagon-N 75 mm</span>
-          </figcaption>
-        </figure>
-
-        <figure class="gallery-item" data-lens="rgn75" data-back="6x12">
-          <a class="gallery-img-link" href="assets/gallery/a__sajinga/lg/260401-sl45-rodenstock-75.jpg" data-lightbox>
-            <img class="gallery-img" src="assets/gallery/a__sajinga/md/260401-sl45-rodenstock-75.jpg" alt="Lotte World Tower framed by cherry blossoms — vertical 6×12 on SL45 with Rodenstock 75 mm" loading="lazy">
-          </a>
-          <figcaption>
-            <span class="gallery-photographer"><a href="https://www.instagram.com/a__sajinga/" target="_blank" rel="noopener">@a__sajinga</a></span>
-            <span class="gallery-meta">Grandagon-N 75 mm</span>
-          </figcaption>
-        </figure>
-
-      </div>
+      <div class="gallery-grid" id="curated-grid"></div>
     </div>
   </section>
+  <script>
+    // Curated grid: equal-share rotation. On every page load, pick N=3 photos at
+    // random from EACH O.ZONE photographer's pool, then shuffle the combined picks.
+    // This keeps the gallery balanced regardless of how many photos any one
+    // photographer has uploaded. When the 5th member's account joins, add their
+    // handle + slug array below; total cards scales to 5 × N automatically.
+    (function () {
+      var N = 3;
+      var POOL = {
+        'a__sajinga': [
+          '250824-o-zone-fw69-mamiya-127',
+          '251017-o-zone-fw45-mamiya-75mm-71650002',
+          '251121-fw45-nikkor-65mm-superia-100',
+          '260218-sl45-75mm-lomo-400-612',
+          '260220-sl45-rodenstock-75-gold-200-linhof-67',
+          '260220-sl45-rodenstock-75mm-portra-400',
+          '260223-sl45-rodenstock-75mm-gold-200',
+          '260227-sl45-rodenstock-75mm-e1000',
+          '260307-o-zone-sl45-rodenstock-75-linhof-6x7-back-lomo-400',
+          '260307-sl45-rodenstock-75-gold-200-612',
+          '260307-sl45-rodenstock-75mm-gold200',
+          '260323-sl45-rodenstock-75-612',
+          '260325-sl45-rodenstock-75-612-ektar',
+          '260325-sl45-rodenstock-75-portar-400-612',
+          '260326-sl45-rodenstock-75-gold200-612',
+          '260401-sl45-rodenstock-75',
+          'fw45-nikkor-65-provia-100f',
+          'fw45-nikkor65-lucky200',
+        ],
+        'anjichrome': [
+          'fw45-nikkor-65mm-6x12-5',
+          'fw45-nikkor-65mm-6x12-e100-3',
+          'fw45-nikkor-65mm-6x12-e100-6',
+          'fw45-nikkor-65mm-6x12-e100-e100-4',
+          'fw45-nikkor-65mm-6x12-portra-400-1',
+          'fw45-nikkor-65mm-6x12-portra-400-2',
+          'fw69-mamiya-50mm-instax-1',
+          'fw69-mamiya-50mm-instax-2',
+          'fw69-mamiya-50mm-instax-3',
+          'fw69-mamiya-50mm-instax-4',
+          'fw69-mamiya-50mm-instax-5',
+          'fw69-mamiya-50mm-instax-6',
+          'fw69-mamiya-50mm-instax-7',
+          'fw69-mamiya-65mm-instax-1',
+          'fw69-mamiya-65mm-instax-2',
+          'fw69-mamiya-65mm-instax-3',
+          'fw69-mamiya-65mm-instax-4',
+          'sl45-rodenstock-90mm-4x5-3',
+          'sl45-rodenstock-90mm-4x5-provia-100f-1',
+          'sl45-rodenstock-90mm-4x5-provia-100f-2',
+          'sl45-rodenstock-90mm-6x12-1',
+          'sl45-rodenstock-90mm-6x12-2',
+          'sl45-rodenstock-90mm-6x12-3',
+        ],
+        '_jangbaljang_': [
+          '251102-sl45-nikkor-65-612-ilford-xp2-1',
+          '251104-sl45-nikkor-65-612-ektar100-1',
+          '251205-sl45-rodenstock-90-612-hp5-400-1',
+          '251205-sl45-rodenstock-90-612-hp5-400-2',
+          '251205-sl45-rodenstock-90-instaxwide-1',
+          '251205-sl45-rodenstock-90-instaxwide-2',
+          '251205-sl45-rodenstock-90-instaxwide-mono-1',
+          '260327-sl45-rodenstock-75-612-provia100f-1',
+          '260327-sl45-rodenstock-75-612-provia100f-2',
+          '260327-sl45-rodenstock-75-612-provia100f-3',
+          '260403-sl45-nikkor-65-67-gold200-1',
+          '260403-sl45-nikkor-65-67-gold200-2',
+          '260403-sl45-nikkor-65-67-gold200-3',
+          '260403-sl45-nikkor-65-67-gold200-4',
+          '260403-sl45-nikkor-65-67-gold200-5',
+          '260424-sl45-rodenstock-75-612-ektar100-1',
+          '260424-sl45-rodenstock-75-612-ektar100-2',
+          '260424-sl45-rodenstock-75-612-ektar100-3',
+          '260512-sl45-rodenstock-75-612-cinestill400d-1',
+          '260512-sl45-rodenstock-75-612-cinestill400d-2',
+          '260512-sl45-rodenstock-75-612-cinestill400d-3',
+          '260512-sl45-rodenstock-75-612-cinestill400d-4',
+          '260512-sl45-rodenstock-75-612-cinestill400d-5',
+          '260512-sl45-rodenstock-75-612-cinestill400d-6',
+          '260512-sl45-rodenstock-75-612-cinestill800t-1',
+          '260512-sl45-rodenstock-75-612-cinestill800t-2',
+          '260512-sl45-rodenstock-75-612-cinestill800t-3',
+          '260512-sl45-rodenstock-75-612-cinestill800t-4',
+          '260512-sl45-rodenstock-75-612-cinestill800t-5',
+          '260512-sl45-rodenstock-75-612-ektar100-1',
+          '260512-sl45-rodenstock-75-612-ektar100-2',
+          '260512-sl45-rodenstock-75-612-ektar100-3',
+          '260512-sl45-rodenstock-75-612-ektar100-4',
+        ],
+        'eeeemyunjun': [
+          '250401-mk8-mamiyapress-65-69-gold-200-1',
+          '250404-fw45-mamiyapress-127-instaxwide',
+          '250525-fw45-mamiyapress-127-instaxwide',
+          '250821-fw69-mamiyapress-100mm-2.8-instaxwide',
+          '250821-fw69-mamiyapress-100mm-2.8-instaxwide-2',
+          '250911-fw45-nikkor-65-612-500t',
+          '250911-fw45-nikkor-65-612-500t-2',
+          '250911-fw45-nikkor-65-612-aerocolor',
+          '250925-fw45-nikkor-65-67-gold200-1',
+          '250925-fw45-nikkor-65-67-gold200-2',
+          '250925-fw45-nikkor-65-67-gold200-3',
+          '250925-fw69-mamiyapress-50-instaxwide',
+          '250925-fw69-mamiyapress-50-instaxwide-2',
+          '250925-fw69-mamiyapress-50-instaxwide-3',
+          '251024-fw45-nikkor-65-612-e100-1',
+          '251116-fw45-nikkor-65-612-ektar100-1',
+          '251116-fw45-nikkor-65-612-ektar100-2',
+          '251116-fw45-nikkor-65-612-ektar100-4',
+          '251123-fw69-mamiyapress-100mm-2.8-instaxwide',
+          '251129-fw45-nikkor-65-45-hp5-1',
+          '251129-fw45-nikkor-65-45-hp5-2',
+          '260109-fw45-rodenstock-90-612-kodak-ektar-100-1',
+          '260109-fw45-rodenstock-90-612-kodak-ektar-100-2',
+          '260109-fw45-rodenstock-90-612-kodak-ektar-100-3',
+          '260109-fw45-rodenstock-90-612-kodak-ektar-100-4',
+          '260204-sl45-rodenstock-75-612-kodak-gold-200',
+          '260205-sl45-rodenstock-75-67-kodak-gold-200-1',
+          '260206-sl45-rodenstock-75-45-fomapan-400',
+          '260221-sl45-nikon-65-612-ektar-100',
+          '260323-sl45-grandagon-75-instaxwide',
+        ],
+      };
+
+      function shuffle(arr) {
+        for (var i = arr.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+        }
+        return arr;
+      }
+
+      // Infer the lens name from a slug. Filename conventions are stable enough
+      // that this is reliable; if a future slug doesn't match any pattern the
+      // caption just falls back to the lens line being empty.
+      function inferLens(slug) {
+        if (/mamiya(?:press)?-?50/.test(slug)) return 'Mamiya Press 50 mm';
+        if (/mamiya(?:press)?-?65/.test(slug)) return 'Mamiya Press 65 mm';
+        if (/mamiya(?:press)?-?75/.test(slug)) return 'Mamiya Press 75 mm';
+        if (/mamiya(?:press)?-?100/.test(slug)) return 'Mamiya Press 100 mm';
+        if (/mamiya(?:press)?-?127/.test(slug)) return 'Mamiya Press 127 mm';
+        if (/nik(?:kor|on)-?65/.test(slug)) return 'Nikkor SW 65 mm';
+        if (/(?:^|-)55(?:-|mm|$)/.test(slug)) return 'Grandagon 55 mm';
+        if (/(?:^|-)75(?:-|mm|$)/.test(slug)) return 'Grandagon-N 75 mm';
+        if (/(?:^|-)90(?:-|mm|$)/.test(slug)) return 'Grandagon 90 mm';
+        return '';
+      }
+
+      var picks = [];
+      Object.keys(POOL).forEach(function (handle) {
+        var photos = POOL[handle].slice();
+        shuffle(photos);
+        photos.slice(0, N).forEach(function (slug) {
+          picks.push({ handle: handle, slug: slug });
+        });
+      });
+      shuffle(picks);
+
+      var grid = document.getElementById('curated-grid');
+      picks.forEach(function (p) {
+        var lens = inferLens(p.slug);
+        var fig = document.createElement('figure');
+        fig.className = 'gallery-item';
+        fig.innerHTML =
+          '<a class="gallery-img-link" href="assets/gallery/' + p.handle + '/lg/' + p.slug + '.jpg" data-lightbox>' +
+          '<img class="gallery-img" src="assets/gallery/' + p.handle + '/md/' + p.slug + '.jpg" alt="' + lens + '" loading="lazy">' +
+          '</a>' +
+          '<figcaption>' +
+          '<span class="gallery-photographer"><a href="https://www.instagram.com/' + p.handle + '/" target="_blank" rel="noopener">@' + p.handle + '</a></span>' +
+          '<span class="gallery-meta">' + lens + '</span>' +
+          '</figcaption>';
+        grid.appendChild(fig);
+      });
+    })();
+  </script>
 
   <!-- Featured photographer -->
   <section class="section gray">
