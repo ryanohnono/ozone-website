@@ -1150,7 +1150,10 @@ button { font: inherit; }
 }
 
 /* Lens card with a real product photo — bleeds to card edges like the placeholder,
-   click-to-zoom enabled via the lightbox. */
+   click-to-zoom enabled via the lightbox.
+   `contain` (not `cover`) keeps the entire lens visible regardless of how each
+   shot was framed; the thin top/bottom letterbox is the same white as the lens
+   shots' background, so it reads as seamless. */
 .lens-card-img-link {
   display: block;
   cursor: zoom-in;
@@ -1164,7 +1167,8 @@ button { font: inherit; }
 .lens-card-img-link img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   display: block;
 }
 
