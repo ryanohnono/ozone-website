@@ -1149,6 +1149,42 @@ button { font: inherit; }
   border-color: rgba(255, 255, 255, 0.18);
 }
 
+/* Lens card with a real product photo — bleeds to card edges like the placeholder,
+   click-to-zoom enabled via the lightbox. */
+.lens-card-img-link {
+  display: block;
+  cursor: zoom-in;
+  margin: -28px -28px 22px;
+  border-radius: 18px 18px 0 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  line-height: 0;
+  background: #fff;
+}
+.lens-card-img-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Helicoid panel image — `contain` keeps the engraved scale fully visible,
+   no edge cropping. */
+.panel-img-link {
+  display: block;
+  cursor: zoom-in;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  line-height: 0;
+  overflow: hidden;
+}
+.panel-img-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 /* ----- Sample photo gallery grid ----- */
 .sample-grid {
   display: grid;
