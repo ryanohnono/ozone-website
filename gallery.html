@@ -326,11 +326,13 @@
         var imgsEl = document.getElementById('featured-images');
         imgsEl.innerHTML = '';
         picks.forEach(function (slug) {
+          var lens = inferLens(slug);
+          var alt = '@' + h + (lens ? ' — ' + lens : '');
           var a = document.createElement('a');
           a.className = 'gallery-img-link';
           a.href = 'assets/gallery/' + dir + '/lg/' + slug + '.jpg';
           a.setAttribute('data-lightbox', '');
-          a.innerHTML = '<img class="gallery-img" src="assets/gallery/' + dir + '/md/' + slug + '.jpg" alt="" loading="lazy">';
+          a.innerHTML = '<img class="gallery-img" src="assets/gallery/' + dir + '/md/' + slug + '.jpg" alt="' + alt + '" loading="lazy">';
           imgsEl.appendChild(a);
         });
 

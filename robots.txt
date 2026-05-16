@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://o-zone.xyz/sitemap.xml
